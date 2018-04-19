@@ -1,5 +1,8 @@
 module main( clock // 50 MHz
 			 ,sw0
+			 ,sw1
+			 ,sw2
+			 ,sw3			 
 			 ,key_0
 			 ,key_1
 			 ,led
@@ -20,9 +23,6 @@ module main( clock // 50 MHz
 
 			input key_0;
 			input key_1;
-			input key_2;
-			input key_3;
-			input key_4;
 			
 			input PS2_CLK;
 			input PS2_DAT;
@@ -33,7 +33,7 @@ module main( clock // 50 MHz
 			output       VGA_HSYNC;
 			output [4:0] VGA_RED;
 			output [4:0] VGA_GREEN;
-			output [4:0] VGABLUE;			
+			output [4:0] VGA_BLUE;			
 
 assign led0 = sw0;
 
