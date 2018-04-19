@@ -1,12 +1,41 @@
-module main(sw0 , led0, led);
+module main( clock // 50 MHz
+			 ,sw0
+			 ,key_0
+			 ,key_1
+			 ,led
+			 ,PS2_CLK
+			 ,PS2_DAT
+			 ,VGA_VSYNC
+			 ,VGA_HSYNC
+			 ,VGA_RED
+			 ,VGA_GREEN
+			 ,VGA_BLUE );
 
-input sw0;
-output led0;
-output reg [7:0] led;
+			input clock;
+
+			input sw0;
+			input sw1;			
+			input sw2;
+			input sw3;	
+
+			input key_0;
+			input key_1;
+			input key_2;
+			input key_3;
+			input key_4;
+			
+			input PS2_CLK;
+			input PS2_DAT;
+
+			output reg [7:0] led;			
+
+			output       VGA_VSYNC;
+			output       VGA_HSYNC;
+			output [4:0] VGA_RED;
+			output [4:0] VGA_GREEN;
+			output [4:0] VGABLUE;			
 
 assign led0 = sw0;
-
-
 
 endmodule
 
