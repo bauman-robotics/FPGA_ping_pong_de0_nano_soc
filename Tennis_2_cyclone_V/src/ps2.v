@@ -9,24 +9,13 @@ module ps2(input PS2_DAT_in,
 reg keyready;
 reg [2:0]kr;
 
-reg trig;
-reg [15:0]start_count;
+
 
 
 
 always @(negedge PS2_CLK_in) keyready <= (revcnt[3:0]==10);
 always @(posedge clock) begin
-	if (trig == 0) begin
-		if (start_count[15] != 1) begin
-			start_count = start_count + 1;
-		end
-		else begin
-			trig <= 1;
-			down <= 1;
-			up <= 0;
-		end 
-	end
-	else begin
+
 			 kr <= {kr,keyready};
 			 if (kr[1]&&~kr[2]) begin
 			  led_out <= keycode_o;
@@ -43,7 +32,7 @@ always @(posedge clock) begin
 			   down <= 0;
 			  end*/
 			 end
-	end
+	
 end 
 
 reg       ps2_clk_in,ps2_clk_syn1,ps2_dat_in,ps2_dat_syn1;
@@ -51,7 +40,7 @@ wire      clk;
 
 //clk division, derive a 97.65625KHz clock from the 50MHz source;
 reg [8:0] clk_div;
-always@(posedge clock) clk_div <= clk_div+1;
+always@(posedge clock) clk_div <= clk_div+1'b1;
 assign clk = clk_div[8];
 
 //multi-clock region simple synchronization
@@ -66,7 +55,7 @@ reg	[7:0]	revcnt;
 	
 always @( posedge ps2_clk_in) begin
 	if (revcnt >=10) revcnt<=0;
-	else             revcnt<=revcnt+1;
+	else             revcnt<=revcnt+1'b1;
 end
 	
 always @(posedge ps2_clk_in) begin

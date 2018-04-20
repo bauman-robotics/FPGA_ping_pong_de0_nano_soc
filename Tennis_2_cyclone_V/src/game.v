@@ -49,11 +49,10 @@ always @*
 
 always @(posedge tm)
 begin
-	if((key[0]==0)&(ry>0))
-		ry<=ry-1'b1;
-	else
-	if((key[1]==0)&(ry<30))
-		ry<=ry+1'b1;
+ case (1'b0)
+  key[0] : if (ry> 0) ry<=ry-1'b1;
+  key[1] : if (ry<30) ry<=ry+1'b1;
+ endcase
 end
 
 
